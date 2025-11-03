@@ -11,7 +11,7 @@ export default {
 
 <template>
   <div class="about">
-    <h1>Page title Ji</h1>
+    <h1>Page title Ji - Push event</h1>
     <p>{{ locale }}</p>
     <p>{{ url }}</p>
   </div>
