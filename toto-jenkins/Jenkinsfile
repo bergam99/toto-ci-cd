@@ -9,6 +9,9 @@ pipeline {
     }
     stages {
         stage ("Build presentation") {
+            when {
+                expression { params.event == 'push' }
+            }
             steps {
                 sh('node -v') // ecrit shell / ""-> warning interpollation / pour sh utilsier ''.
                 sh('npm -v')
