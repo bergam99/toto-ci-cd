@@ -34,7 +34,14 @@ pipeline {
     }
     post {
         always {
-            mail(to:"${MAIL_TO}", subject:"test sub", body:"Jenkins, ${BUILD_URL}, Build status : ${currentBuild.currentResult}, Job name: ${JOB_NAME}")
+            script{
+                if(params.report){
+                    echo "Sending report..."
+                  mail(to:"${MAIL_TO}", subject:"test sub", body:"Jenkins, ${BUILD_URL}, Build status : ${currentBuild.currentResult}, Job name: ${JOB_NAME}")
+                } else {
+                    echo "Report disabled, not sending report."
+                }
+            }
         }
     }
 }
