@@ -11,6 +11,7 @@ pipeline {
         stage ("Build presentation") {
             when {
                 expression { params.event == 'push' }
+                 echo "not a push event"
             }
             steps {
                 sh('node -v') // ecrit shell / ""-> warning interpollation / pour sh utilsier ''.
