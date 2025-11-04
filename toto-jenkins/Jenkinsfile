@@ -3,9 +3,11 @@ pipeline {
     agent {
         label "$NODE"
     }
-
     tools {
         nodejs "NODE22" //cle : identifiant de outil / version de outil
+    }
+    options {
+        withFolderProperties() // permet de utilsier les props de folder (${mail to})
     }
     stages {
         stage("Pre stage"){
@@ -29,5 +31,10 @@ pipeline {
                 echo "${params.trigger}"
             }
         }       
+    }
+    post {
+        always {
+            mail(to:"${MAIL_TO}", subject:"test sub", body:"test body")
+        }
     }
 }
