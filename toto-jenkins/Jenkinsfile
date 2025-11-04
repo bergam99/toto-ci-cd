@@ -34,7 +34,7 @@ pipeline {
     }
     post {
         always {
-            mail(to:"${MAIL_TO}", subject:"test sub", body:"test body")
+            mail(to:"${MAIL_TO}", subject:"test sub", body:"Jenkins, ${BUILD_URL}, Build status : ${currentBuild.currentResult}, Job name: ${JOB_NAME}")
         }
     }
 }
