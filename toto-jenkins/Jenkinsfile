@@ -8,6 +8,7 @@ pipeline {
     }
     options {
         withFolderProperties() // permet de utilsier les props de folder (${mail to})
+        skipDefaultCheckout(true) // pas checkout tout de suite
     }
     stages {
         stage("Pre stage"){
@@ -18,6 +19,7 @@ pipeline {
                     error("Must be a push event, was: " + params.event)
                 }
                 cleanWs() // clean workspace. avant build. 
+                checkout scm // checkout apres clean
                 echo "${NODE}"
                 echo "${params.event}"
                 echo "${params.delivery}"
@@ -28,7 +30,7 @@ pipeline {
         }
         stage ("Prepare presentation artifacts") {
             steps {
-                sh('toto-jenkins/sh/prepare-presentation.sh') // ecrit shell / ""-> warning interpollation / pour sh utilsier ''.
+                sh('toto-jenkins/prepare-presentation.sh') // ecrit shell / ""-> warning interpollation / pour sh utilsier ''.
             }
         }
     }
