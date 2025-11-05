@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# $0 = script meme
+# declarer constant
+readonly ENV_FILE_PATH=$1
+
 echo " > Preparing presentation artifacts with node and npm: "
 node -v
 npm -v
@@ -10,6 +14,7 @@ echo " > Generate artifacts with npm: "
 
 npm --prefix ./toto-presentation/ install # faire npm install dans le dossier toto-presentation mais pas dnas le workspace racine.
 
-# .env.production
+# .env.production 
+cp $ENV_FILE_PATH ./toto-presentation/.env.production # copie source -> destination
 
 npm --prefix ./toto-presentation/ run build
