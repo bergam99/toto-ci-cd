@@ -30,7 +30,7 @@ pipeline {
         }
         stage ("Prepare presentation artifacts") {
             steps {
-                sh('toto-jenkins/prepare-presentation.sh') // ecrit shell / ""-> warning interpollation / pour sh utilsier ''.
+                sh('bash toto-jenkins/prepare-presentation.sh') // ecrit shell / ""-> warning interpollation / pour sh utilsier ''./ bash: pour dire c'est un bash executable (pour la raison securité)
             }
         }
     }
