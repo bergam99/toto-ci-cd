@@ -1,10 +1,15 @@
 #!/bin/bash
 
+
 # $0 = script meme
 # declarer constant
+readonly SCRIPT=$0
 readonly ENV_FILE_PATH=$1
 
+echo "> Execution ${SCRIPT}"
+
 echo " > Preparing presentation artifacts with node and npm: "
+
 node -v
 npm -v
 
