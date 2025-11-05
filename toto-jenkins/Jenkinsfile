@@ -4,7 +4,7 @@ pipeline {
         label "$NODE"
     }
     tools {
-        nodejs "NODE22" //cle : identifiant de outil / version de outil
+        nodejs "NODE22" //cle : identifiant de outil / version de outil (ne pas utiliser node de serveur par default. ) ce pipeline se fait sur node 22
     }
     options {
         withFolderProperties() // permet de utilsier les props de folder (${mail to})
@@ -17,21 +17,20 @@ pipeline {
                     currentBuild.currentResult = "ABORTED"
                     error("Must be a push event, was: " + params.event)
                 }
-                cleanWs() // clean workspace
-            }
-           }
-        }
-        stage ("Build presentation") {
-            steps {
-                sh('node -v') // ecrit shell / ""-> warning interpollation / pour sh utilsier ''.
-                sh('npm -v')
+                cleanWs() // clean workspace. avant build. 
                 echo "${NODE}"
                 echo "${params.event}"
                 echo "${params.delivery}"
                 echo "${params.hook}"
                 echo "${params.trigger}"
             }
-        }       
+           }
+        }
+        stage ("Prepare presentation artifacts") {
+            steps {
+                sh('toto-jenkins/sh/prepare-presentation.sh') // ecrit shell / ""-> warning interpollation / pour sh utilsier ''.
+            }
+        }
     }
     post {
         always {
