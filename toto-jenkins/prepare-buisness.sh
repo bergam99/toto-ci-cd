@@ -11,7 +11,6 @@ echo "> Execution ${SCRIPT}"
 
 echo " > Preparing buisness artifacts with maven and java: "
 
-
 # application-prod.properties
 echo " > Copy tmp env file to ./toto-buisness/src/main/resources/application-prod.properties"
 cp $ENV_FILE_PATH ./toto-buisness/src/main/resources/application-prod.properties # copie source -> destination
@@ -22,4 +21,3 @@ mvn -Dmaven.test.skip=true -f ./toto-buisness/pom.xml package
 # application-prod.properties
 echo " > Copy tmp env file to ./toto-buisness/.env.production"
 cp $ENV_FILE_PATH ./toto-presentation/.env.production # copie source -> destination
-
