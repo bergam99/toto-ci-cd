@@ -6,8 +6,6 @@ set -e # Failure et arreter à l'erreur
 # declarer constant
 readonly SCRIPT=$0
 readonly ENV_FILE_PATH=$1
-readonly TOTO_PRESENTATION_DEPLOY_DIR=$2
-readonly TOTO_PRESENTATION_URL=$3
 
 echo "> Execution ${SCRIPT}"
 
@@ -27,10 +25,3 @@ echo " > Copy tmp env file to ./toto-presentation/.env.production"
 cp $ENV_FILE_PATH ./toto-presentation/.env.production # copie source -> destination
 
 npm --prefix ./toto-presentation/ run build
-
-echo " > Deploy dist/* to ${TOTO_PRESENTATION_DEPLOY_DIR}"
-rm -r $TOTO_PRESENTATION_DEPLOY_DIR/* # supprimer dans le folder l'ancien build
-cp -r ./toto-presentation/dist/* $TOTO_PRESENTATION_DEPLOY_DIR # sur ecrire (les artifacts de build dans dist -> copy deploy directory)
-
-echo " > Deployed !!"
-echo $TOTO_PRESENTATION_URL
