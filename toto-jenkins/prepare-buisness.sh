@@ -13,6 +13,6 @@ echo "> Execution ${SCRIPT}"
 echo " > Preparing buisness artifacts with maven and java: "
 
 mvn -v
-mvn -Dmaven.test.skip=true -f ./toto-buisness.pom.xml package
+mvn -Dmaven.test.skip=true -f ./toto-buisness/pom.xml package
 
 echo " > Build completed succesfully"
