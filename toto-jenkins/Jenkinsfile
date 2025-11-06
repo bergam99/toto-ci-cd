@@ -5,6 +5,8 @@ pipeline {
     }
     tools {
         nodejs "NODE22" //cle : identifiant de outil / version de outil (ne pas utiliser node de serveur par default. ) ce pipeline se fait sur node 22
+        maven "MVN39"
+        jdk "JDK21"
     }
     options {
         withFolderProperties() // permet de utilsier les props de folder (${mail to})
@@ -28,6 +30,22 @@ pipeline {
             }
            }
         }
+        stage ("Prepare buisness artifacts") {
+            steps {
+                script {
+                    try{
+                        configFileProvider(
+                            [configFile(fileId: 'toto-buisness-env', variable: 'ENV_FILE_PATH')]) {
+                            sh('bash toto-jenkins/prepare-presentation.sh $ENV_FILE_PATH') 
+                        }
+                    } catch(Exception ex) {
+                        unstable("Error in stage ${env.STAGE_NAME}: " + ex.toString()) // UNSTABLE
+
+                    }
+                }
+                    
+            }
+        }
         stage ("Prepare presentation artifacts") {
             steps {
                 script {
@@ -47,9 +65,7 @@ pipeline {
         }
         stage("Deploy presentation"){
             when{
-                expression {
-                    return currentBuild.currentResult != "UNSTABLE";
-                }
+                expression { currentBuild.currentResult != "UNSTABLE" }
             }
             steps {
               script {
