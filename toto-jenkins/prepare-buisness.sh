@@ -1,5 +1,6 @@
 #!/bin/bash
 
+set -ex
 set -e # Failure et arreter à l'erreur
 
 # $0 = script meme
