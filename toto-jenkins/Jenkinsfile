@@ -33,12 +33,12 @@ pipeline {
                 script {
                     try{
                         configFileProvider(
-                            [configFile(fileId: 'toto-presentation-en', variable: 'ENV_FILE_PATH')]) {
+                            [configFile(fileId: 'toto-presentation-env', variable: 'ENV_FILE_PATH')]) {
                                 echo "${ENV_FILE_PATH}"
                             sh('bash toto-jenkins/prepare-presentation.sh $ENV_FILE_PATH') //passer variable à shell de jenkins // ecrit shell / ""-> warning interpollation / pour sh utilsier ''./ bash: pour dire c'est un bash executable (pour la raison securité)
                         }
                     } catch(Exception ex) {
-                        unstable("Error in stage ${env.STAGE_NAME}: " + ex.toString())
+                        unstable("Error in stage ${env.STAGE_NAME}: " + ex.toString()) // UNSTABLE
 
                     }
                 }
