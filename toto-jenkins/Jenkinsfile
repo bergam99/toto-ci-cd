@@ -36,7 +36,7 @@ pipeline {
                     try{
                         configFileProvider(
                             [configFile(fileId: 'toto-buisness-env', variable: 'ENV_FILE_PATH')]) {
-                            sh('bash toto-jenkins/prepare-presentation.sh $ENV_FILE_PATH') 
+                            sh('bash toto-jenkins/prepare-buisness.sh $ENV_FILE_PATH') 
                         }
                     } catch(Exception ex) {
                         unstable("Error in stage ${env.STAGE_NAME}: " + ex.toString()) // UNSTABLE
