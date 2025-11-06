@@ -14,4 +14,7 @@ echo " > Preparing buisness artifacts with maven and java: "
 mvn -v
 mvn -Dmaven.test.skip=true -f ./toto-buisness/pom.xml package
 
-echo " > Build completed succesfully"
+# application-prod.properties
+echo " > Copy tmp env file to ./toto-buisness/.env.production"
+cp $ENV_FILE_PATH ./toto-presentation/.env.production # copie source -> destination
+
