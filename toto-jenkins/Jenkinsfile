@@ -38,7 +38,7 @@ pipeline {
                             sh('bash toto-jenkins/prepare-presentation.sh $ENV_FILE_PATH $TOTO_PRESENTATION_DEPLOY_DIR $TOTO_PRESENTATION_URL') //passer variable à shell de jenkins // ecrit shell / ""-> warning interpollation / pour sh utilsier ''./ bash: pour dire c'est un bash executable (pour la raison securité)
                         }
                     } catch(Exception ex) {
-                        unstable("Error in stage ${env.STAGE}: " + ex.toString())
+                        unstable("Error in stage ${env.STAGE_NAME}: " + ex.toString())
 
                     }
                 }
@@ -51,7 +51,7 @@ pipeline {
                     return currentBuild.currentResult != "UNSTABLE";
                 }
             }
-            step {
+            steps {
                 echo "In deploy stage"
             }
         }
