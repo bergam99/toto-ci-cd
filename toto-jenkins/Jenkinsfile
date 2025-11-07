@@ -70,7 +70,7 @@ pipeline {
             steps {
               script {
                     try{
-                        sh('bash toto-jenkins/deploy-buisness.sh  $TOTO_BUISNESS_DEPLOY_DIR $TOTO_BUISNESS_URL') 
+                        sh('bash toto-jenkins/deploy-buisness.sh  $TOTO_BUISNESS_DEPLOY_DIR $TOTO_BUISNESS_URL $TOTO_BUISNESS_PORT') 
                     } catch(Exception ex) {
                         error("Error in stage ${env.STAGE_NAME}: " + ex.toString())
 
