@@ -15,7 +15,7 @@ readonly PID_EXIT_CODE=$?
 
 set -e # pas tout en haut si pid exists pas
 
-if [ $PID_EXIT_CODE -eq 0 ]; then
+if [ $PID_EXIT_CODE -eq "0" ]; then
     # Stop app
     echo "killing gracefully the process with PID=${PID}..."
     kill -15 $PID
